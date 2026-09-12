@@ -2,25 +2,143 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #16283a;
+
+  /* Signature ShardaCare CTA gradient (pink -> orange). */
+  --brand-cta: linear-gradient(90deg, #de2263 0%, #e96e33 100%);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-mulish);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ShardaCare Healthcity brand palette, sourced from ai.shardacare.com. */
+@theme {
+  --color-brand-primary: #1e5a8e;
+  --color-brand-primary-dark: #143d61;
+  --color-brand-ink: #16283a;
+  --color-brand-bg: #f2f6fa;
+  --color-brand-accent: #e3376d;
+  --color-brand-accent-dark: #c72a5c;
+  --color-brand-line: #e3e8f1;
+  --color-brand-muted: #586080;
+  --color-brand-indigo: #313669;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-mulish), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Staggered chip entrance — delay is set per chip inline. */
+@keyframes chip-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.chip-in {
+  animation: chip-in 0.45s cubic-bezier(0.34, 1.4, 0.5, 1) backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip-in {
+    animation: none;
+  }
+}
+
+/* Placeholder rotation. Percentages assume 5 phrases over a 20s cycle
+   (4s each) — keep in sync with PLACEHOLDER_PHRASES in lib/sharda-ai.ts. */
+@keyframes phrase-cycle {
+  0% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  3%,
+  17% {
+    opacity: 1;
+    transform: none;
+  }
+  20%,
+  100% {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+.phrase-cycle {
+  animation: phrase-cycle 20s ease-in-out infinite both;
+}
+
+@keyframes sheet-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.sheet-up {
+  animation: sheet-up 0.28s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phrase-cycle {
+    animation: none;
+    opacity: 0;
+  }
+  .phrase-cycle:first-child {
+    opacity: 1;
+  }
+  .sheet-up {
+    animation: none;
+  }
+}
+
+/* Actions fanning up out of the FAB. */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise-in {
+  animation: rise-in 0.32s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fade-in 0.25s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise-in,
+  .fade-in {
+    animation: none;
+  }
 }
