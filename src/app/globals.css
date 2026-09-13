@@ -56,19 +56,20 @@ body {
   }
 }
 
-/* Placeholder rotation. Percentages assume 5 phrases over a 20s cycle
-   (4s each) — keep in sync with PLACEHOLDER_PHRASES in lib/sharda-ai.ts. */
+/* Placeholder rotation. Windows are 1/7th of the cycle (4s of 28s) — these
+   percentages track PLACEHOLDER_PHRASES.length in lib/sharda-ai.ts, so they
+   must be recomputed if a phrase is added or removed. */
 @keyframes phrase-cycle {
   0% {
     opacity: 0;
     transform: translateY(4px);
   }
-  3%,
-  17% {
+  2.1%,
+  12.1% {
     opacity: 1;
     transform: none;
   }
-  20%,
+  14.3%,
   100% {
     opacity: 0;
     transform: translateY(-4px);
@@ -76,7 +77,7 @@ body {
 }
 
 .phrase-cycle {
-  animation: phrase-cycle 20s ease-in-out infinite both;
+  animation: phrase-cycle 28s ease-in-out infinite both;
 }
 
 @keyframes sheet-up {

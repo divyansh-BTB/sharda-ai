@@ -13,8 +13,7 @@ const ICONS = {
     "M10 11.5a3.6 3.6 0 1 0 0-7.2 3.6 3.6 0 0 0 0 7.2ZM3 20.5a7.2 7.2 0 0 1 9.4-6.9M17.6 18.4a2.7 2.7 0 1 0 0-5.4 2.7 2.7 0 0 0 0 5.4Zm2 2-1.4-1.4",
   whatsapp:
     "M12 3.2a8.8 8.8 0 0 0-7.5 13.4L3.4 20.6l4.1-1.1A8.8 8.8 0 1 0 12 3.2Zm4.7 12c-.2.6-1.2 1.1-1.7 1.1-.9.1-1.7-.5-3.4-1.5a9.4 9.4 0 0 1-3.2-3.6c-.5-1-.1-1.9.3-2.3.2-.2.5-.3.7-.2h.5c.2 0 .4 0 .6.5l.7 1.6c.1.2 0 .4-.1.5l-.4.5c-.1.2-.2.3 0 .6.5.8 1.5 1.7 2.4 2.1.3.2.5.1.6 0l.7-.8c.2-.2.3-.2.5-.1l1.5.8c.4.2.5.3.5.5Z",
-  spark:
-    "m12 3.2 1.7 4.4 4.4 1.7-4.4 1.7L12 15.4l-1.7-4.4L5.9 9.3l4.4-1.7L12 3.2ZM18.5 15.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8Z",
+  spark: "M12 4l1.9 5.1 5.1 1.9-5.1 1.9L12 20l-1.9-5.1L5 12l5.1-1.9L12 4Z",
   close: "M6 6l12 12M18 6 6 18",
 } as const;
 
@@ -90,10 +89,7 @@ export function MobileAskNav() {
                 id="ask-didi-title"
                 className="text-[26px] font-extrabold leading-tight tracking-tight text-white"
               >
-                Ask{" "}
-                <span className="bg-[image:var(--brand-cta)] bg-clip-text text-transparent">
-                  Bhartiya Didi
-                </span>
+                Ask Bhartiya Didi
               </h2>
               <p className="mt-1.5 text-xs font-medium text-white/75">
                 हिंदी ya English, dono chalega
@@ -140,8 +136,8 @@ export function MobileAskNav() {
               className={`size-6 transition-transform duration-300 ${open ? "rotate-90" : ""}`}
             />
           </a>
-          <span className="mt-1 text-[10px] font-semibold leading-tight tracking-tight text-brand-accent-dark">
-            Ask AI
+          <span className="mt-2.5 text-[10px] font-semibold leading-tight tracking-tight text-brand-accent-dark">
+            Ask Didi
           </span>
         </div>
 

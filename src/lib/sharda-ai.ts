@@ -12,10 +12,12 @@ export const ASK_PLACEHOLDER = "Which doctor should I see for chest pain?";
  */
 export const PLACEHOLDER_PHRASES: string[] = [
   ASK_PLACEHOLDER,
-  "Kya knee replacement ka kharcha kitna hai?",
-  "What does a full body checkup cost?",
-  "Cashless insurance kaise use karein?",
-  "Is a free second opinion available?",
+  "What does the heart checkup at ₹499 include?",
+  "Is cashless insurance accepted here?",
+  "Book an appointment with a neurologist",
+  "Best full body checkup for my parents?",
+  "Kya knee replacement yahan hota hai?",
+  "How do I get a free second opinion?",
 ];
 
 /**
@@ -39,34 +41,32 @@ export type SuggestedQuestion = {
  * ai.shardacare.com, so a chip here asks exactly what a chip there asks. */
 export const SUGGESTED_QUESTIONS: SuggestedQuestion[] = [
   {
-    label: "Find the right doctor",
+    label: "Find the Right Doctor",
     question:
       "I have chest pain. Which cardiologist should I see at ShardaCare and when are they available?",
   },
   {
-    label: "Checkup packages & prices",
-    question:
-      "Compare all health checkup packages at ShardaCare with prices and what each one includes.",
+    label: "Heart Checkup ₹499",
+    question: "What does the ₹499 heart checkup at ShardaCare include?",
   },
   {
-    label: "Book an appointment",
+    label: "Book an Appointment",
     question:
       "How do I book an OPD appointment at ShardaCare and what are the timings?",
   },
   {
-    label: "Insurance & cashless",
+    label: "Insurance & Cashless",
     question:
       "Which insurance companies and TPAs are on panel at ShardaCare for cashless treatment?",
   },
   {
-    label: "Free second opinion",
-    question:
-      "How do I get a free second opinion from ShardaCare's senior specialists using my medical reports?",
+    label: "Treatment Costs",
+    question: "What do common treatments and surgeries cost at ShardaCare?",
   },
   {
-    label: "Cancer care",
+    label: "Free Second Opinion",
     question:
-      "What cancer treatments are available at ShardaCare's Institute of Cancer Care, and which oncologists lead them?",
+      "How do I get a free second opinion from ShardaCare's senior specialists using my medical reports?",
   },
 ];
 
