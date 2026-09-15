@@ -1,0 +1,48 @@
+{
+  "askUrl": "https://ai.shardacare.com/q",
+  "homeUrl": "https://ai.shardacare.com/",
+  "helplineDisplay": "73000 40000",
+  "helplineTel": "+917300040000",
+  "whatsappUrl": "https://wa.me/917300040000",
+  "note": {
+    "records": "Answers come from the hospital's verified records",
+    "language": "हिंदी ya English, dono chalega",
+    "emergency": "Emergency?"
+  },
+  "ctaLabel": "Ask Bhartiya Didi",
+  "placeholderPhrases": [
+    "Which doctor should I see for chest pain?",
+    "What does the heart checkup at ₹499 include?",
+    "Is cashless insurance accepted here?",
+    "Book an appointment with a neurologist",
+    "Best full body checkup for my parents?",
+    "Kya knee replacement yahan hota hai?",
+    "How do I get a free second opinion?"
+  ],
+  "suggestedQuestions": [
+    {
+      "label": "Find the Right Doctor",
+      "question": "I have chest pain. Which cardiologist should I see at ShardaCare and when are they available?"
+    },
+    {
+      "label": "Heart Checkup ₹499",
+      "question": "What does the ₹499 heart checkup at ShardaCare include?"
+    },
+    {
+      "label": "Book an Appointment",
+      "question": "How do I book an OPD appointment at ShardaCare and what are the timings?"
+    },
+    {
+      "label": "Insurance & Cashless",
+      "question": "Which insurance companies and TPAs are on panel at ShardaCare for cashless treatment?"
+    },
+    {
+      "label": "Treatment Costs",
+      "question": "What do common treatments and surgeries cost at ShardaCare?"
+    },
+    {
+      "label": "Free Second Opinion",
+      "question": "How do I get a free second opinion from ShardaCare's senior specialists using my medical reports?"
+    }
+  ]
+}

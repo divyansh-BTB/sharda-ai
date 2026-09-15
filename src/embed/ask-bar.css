@@ -1,0 +1,462 @@
+/* ShardaCare ask bar — standalone stylesheet.
+   Lives inside a shadow root, so host-page CSS cannot reach any of it. */
+
+/* We are inside a shadow root: host-page CSS cannot reach any of this, so the
+   resets use bare element selectors (0,0,1). Prefixing them with .scai would
+   make them (0,1,1) — beating the component classes and silently wiping their
+   colour and padding. */
+
+:host {
+  display: block;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+button,
+input,
+a,
+p,
+ul,
+li,
+nav,
+form,
+span,
+div,
+em,
+i,
+svg {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  text-transform: none;
+  text-align: inherit;
+}
+
+button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+input {
+  background: none;
+  border: 0;
+  outline: 0;
+  border-radius: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.scai {
+  font-family: Mulish, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.4;
+  letter-spacing: normal;
+  text-align: left;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+
+  --primary: #1e5a8e;
+  --primary-dark: #143d61;
+  --ink: #16283a;
+  --accent: #e3376d;
+  --accent-dark: #c72a5c;
+  --line: #e3e8f1;
+  --muted: #586080;
+  --indigo: #313669;
+  --cta: linear-gradient(90deg, #de2263 0%, #e96e33 100%);
+
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 2147483000;
+}
+
+.scai--inline {
+  position: relative;
+  z-index: auto;
+}
+
+.scai__stage {
+  position: relative;
+}
+
+/* Masked so the blur dissolves upward instead of cutting a hard line. */
+.scai__glass {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(231, 237, 245, 0.95),
+    rgba(238, 243, 249, 0.8) 55%,
+    rgba(255, 255, 255, 0.1)
+  );
+  backdrop-filter: blur(18px) saturate(1.35);
+  -webkit-backdrop-filter: blur(18px) saturate(1.35);
+  -webkit-mask-image: linear-gradient(
+    to top,
+    #000 0%,
+    #000 52%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(to top, #000 0%, #000 52%, transparent 100%);
+}
+
+.scai--inline .scai__glass {
+  display: none;
+}
+
+.scai__inner {
+  position: relative;
+  width: 100%;
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 48px 16px max(16px, env(safe-area-inset-bottom));
+}
+
+.scai--inline .scai__inner {
+  padding: 0;
+}
+
+/* Chips ------------------------------------------------------------------ */
+
+.scai__chips {
+  margin-bottom: 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 22px,
+    #000 calc(100% - 22px),
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 22px,
+    #000 calc(100% - 22px),
+    transparent
+  );
+}
+
+.scai__chips::-webkit-scrollbar {
+  display: none;
+}
+
+.scai__chiplist {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 6px;
+}
+
+.scai__chip {
+  display: inline-flex;
+  max-width: 210px;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #fff;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: rgba(22, 40, 58, 0.8);
+  box-shadow:
+    0 0 0 1px rgba(22, 40, 58, 0.06),
+    0 1px 2px rgba(22, 40, 58, 0.06),
+    0 4px 10px -6px rgba(20, 61, 97, 0.25);
+  transition:
+    color 0.15s,
+    box-shadow 0.15s;
+  animation: scai-chip-in 0.45s cubic-bezier(0.34, 1.4, 0.5, 1) backwards;
+}
+
+.scai__chip:hover {
+  color: var(--primary);
+  box-shadow:
+    0 0 0 1px rgba(30, 90, 142, 0.25),
+    0 2px 4px rgba(22, 40, 58, 0.08),
+    0 8px 18px -8px rgba(20, 61, 97, 0.35);
+}
+
+.scai__chip:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Field ------------------------------------------------------------------ */
+
+.scai__row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 12px;
+}
+
+/* 1px gradient hairline, brightening on focus. */
+.scai__field {
+  min-width: 0;
+  flex: 1 1 auto;
+  border-radius: 17px;
+  padding: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(30, 90, 142, 0.55),
+    rgba(49, 54, 105, 0.45),
+    rgba(227, 55, 109, 0.55)
+  );
+  box-shadow:
+    0 2px 6px -2px rgba(22, 40, 58, 0.1),
+    0 18px 44px -16px rgba(20, 61, 97, 0.45);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.scai__field:focus-within {
+  background: linear-gradient(90deg, #1e5a8e, #313669, #e3376d);
+  box-shadow:
+    0 2px 8px -2px rgba(22, 40, 58, 0.12),
+    0 24px 56px -16px rgba(20, 61, 97, 0.55);
+}
+
+.scai__pill {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 12px;
+  border-radius: 16px;
+  background: #fff;
+  padding: 6px 6px 6px 12px;
+  box-shadow:
+    0 1px 2px rgba(22, 40, 58, 0.05),
+    0 2px 6px -2px rgba(22, 40, 58, 0.08);
+}
+
+.scai__badge {
+  flex: 0 0 auto;
+  border-radius: 8px;
+  background: rgba(30, 90, 142, 0.09);
+  padding: 6px 8px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--primary-dark);
+}
+
+.scai__badge i {
+  font-style: normal;
+  opacity: 0.4;
+}
+
+.scai__divider {
+  flex: 0 0 auto;
+  width: 1px;
+  height: 24px;
+  background: var(--line);
+}
+
+.scai__inputwrap {
+  position: relative;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.scai__input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.scai__input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.scai__phrases {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.scai__input:placeholder-shown ~ .scai__phrases {
+  opacity: 1;
+}
+
+.scai__phrase {
+  position: absolute;
+  inset-inline: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 16px;
+  color: rgba(88, 96, 128, 0.55);
+  animation: scai-phrase var(--cycle) ease-in-out infinite both;
+}
+
+.scai__send {
+  display: flex;
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  color: var(--accent);
+  transition: background 0.15s, color 0.15s;
+}
+
+.scai__send svg {
+  width: 20px;
+  height: 20px;
+  margin-left: -1px;
+}
+
+.scai__send:hover {
+  background: rgba(227, 55, 109, 0.1);
+  color: var(--accent-dark);
+}
+
+.scai__send:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Nothing typed yet — dim the send, like the reference widget does. */
+.scai__field:has(.scai__input:placeholder-shown) .scai__send {
+  color: rgba(88, 96, 128, 0.4);
+  cursor: default;
+}
+
+.scai__field:has(.scai__input:placeholder-shown) .scai__send:hover {
+  background: none;
+}
+
+.scai__cta {
+  display: none;
+  flex: 0 0 auto;
+  align-items: center;
+  border-radius: 12px;
+  background: var(--cta);
+  padding: 14px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #fff;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 8px 22px -8px rgba(222, 34, 99, 0.8);
+  transition: filter 0.15s;
+}
+
+.scai__cta:hover {
+  filter: brightness(1.07);
+}
+
+.scai__cta:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (min-width: 640px) {
+  .scai__cta {
+    display: inline-flex;
+  }
+}
+
+/* Note ------------------------------------------------------------------- */
+
+.scai__note {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 20px;
+  color: rgba(22, 40, 58, 0.85);
+}
+
+.scai__note em {
+  font-style: normal;
+  margin: 0 8px;
+  opacity: 0.3;
+}
+
+.scai__note a {
+  font-weight: 600;
+  color: var(--accent-dark);
+  text-underline-offset: 2px;
+}
+
+.scai__note a:hover {
+  text-decoration: underline;
+}
+
+/* Motion ----------------------------------------------------------------- */
+
+@keyframes scai-chip-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Visible window is one slot of the cycle; the build script writes the
+   percentages from the phrase count so they always divide evenly. */
+@keyframes scai-phrase {
+  0% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  __IN__,
+  __HOLD__ {
+    opacity: 1;
+    transform: none;
+  }
+  __OUT__,
+  100% {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scai__chip {
+    animation: none;
+  }
+  .scai__phrase {
+    animation: none;
+    opacity: 0;
+  }
+  .scai__phrase:first-child {
+    opacity: 1;
+  }
+}

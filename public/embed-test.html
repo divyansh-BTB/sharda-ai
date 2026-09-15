@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ask bar embed — host page test</title>
+<style>
+  /* Deliberately hostile host styles. A WordPress or Shopify theme will have
+     rules like these, and they must NOT reach inside the widget. */
+  * { box-sizing: content-box; }
+  body {
+    font-family: "Comic Sans MS", cursive;
+    background: #3b2a55;
+    color: #ffe;
+    margin: 0;
+    padding: 32px 24px 320px;
+    line-height: 2.4;
+  }
+  input, button, a, form {
+    font-family: "Courier New", monospace !important;
+    font-size: 22px !important;
+    background: #b00 !important;
+    color: #ff0 !important;
+    border: 4px dashed #0f0 !important;
+    border-radius: 0 !important;
+    padding: 12px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 3px !important;
+  }
+  h1 { font-size: 26px; }
+  .card { background: #55407a; padding: 20px; border-radius: 12px; max-width: 640px; }
+</style>
+</head>
+<body>
+  <h1>Hostile host page</h1>
+  <div class="card">
+    <p>Every <code>input</code>, <code>button</code>, <code>a</code> and <code>form</code>
+    on this page is forced to red/yellow Courier with dashed green borders, and the body
+    is Comic Sans on purple.</p>
+    <p>If the ask bar below looks correct, shadow-root isolation is working.</p>
+    <p>Native controls for comparison:</p>
+    <form><input placeholder="host input"><button type="button">host button</button></form>
+  </div>
+
+  <!-- The one line a real site pastes in -->
+  <script src="/embed.js" data-source="embed-test" defer></script>
+</body>
+</html>
